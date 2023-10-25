@@ -1,0 +1,10 @@
+#include "company.h"
+
+STRINGTABLE DISCARDABLE
+BEGIN
+
+resCompWebTitle                 "ГПАС on Web"
+resCompWebUrl                   "http://www.gpas.ru"
+resCompPrgUse                   "Предназначена для использования в\012ЗАО Газприборавтоматикасервис"
+
+END

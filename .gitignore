@@ -6,6 +6,9 @@
 *.txt
 *.exe
 *.ncb
+*.ocx
+*.oca
+
 *.cbak
 *.hbak
 
@@ -13,11 +16,13 @@ desktop.ini
 
 
 /Debug/
+/Release/
 /ipch/
 /.vs/
 /_!_api3/
 /_UpgradeReport_Files/
 /_proba_filters_all_anomaly/
+
 
 /drivers/experimental.drv/ansis_drv/Debug/
 /drivers/experimental.drv/raw_data/2021.09.02_10inch_Caliper/
@@ -28,3 +33,5 @@ desktop.ini
 /drivers/nano/_nano_v1_v3_trace_shift_log_po_odnomu_odom/
 /drivers/nano/nano_512_rips_ext/
 /drivers/nano/nano_512/1400_lasti_700/
+
+/program/_chaged_files/

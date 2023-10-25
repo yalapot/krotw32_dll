@@ -1,0 +1,1 @@
+"%PF%\Microsoft Visual Studio\VB98\vb6.exe" /d /m temp.vbp

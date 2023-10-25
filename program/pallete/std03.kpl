@@ -1,0 +1,16 @@
+[Palette]
+Version=1
+EntryNum=7
+BorderMin=84
+BorderMax=137
+
+[Items]
+ItemMin=0:0
+ItemMax=199:13823
+Item1=88:11579568
+Item2=89:12632256
+Item3=110:15863040
+Item4=128:587520
+Item5=137:65384
+Item6=151:62975
+Item7=154:59135

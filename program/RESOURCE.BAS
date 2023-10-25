@@ -1,0 +1,129 @@
+Attribute VB_Name = "resource"
+Option Explicit
+
+' size of aperture for vog-markers
+Public Const VOG_APERTURE = 16
+
+Public Const WHITE_CURSOR = 101
+Public Const BLACK_CURSOR = 102
+Public Const EMPTY_CURSOR = 103
+Public Const HAND_CURSOR = 104
+
+Public Const DAI_RUN = 1012
+Public Const DAI_STOP = 1013
+
+Public Const BMP_anomal = 5             ' "anomal.bmp"
+Public Const BMP_crack = 6              ' "crack.bmp"
+Public Const BMP_crzgroup = 7           ' "crzgroup.bmp"
+Public Const BMP_kanavHor = 8           ' "kanavHor.bmp"
+Public Const BMP_kanavVer = 9           ' "kanavVer.bmp"
+Public Const BMP_defekt = 10            ' "defekt.bmp"
+Public Const BMP_privarka = 11          ' "privarka.bmp"
+Public Const BMP_mehan = 12             ' "mehan.bmp"
+Public Const BMP_stress = 13            ' "stress.bmp"
+Public Const BMP_cracks = 14            ' "cracks.bmp"
+Public Const BMP_vmyat = 15             ' "vmyat.bmp"
+Public Const BMP_vmyat_m = 25           ' "vmyat_m.bmp"
+Public Const BMP_oval = 16              ' "oval.bmp"
+Public Const BMP_bad_styk = 17          ' "bad_styk.bmp"
+Public Const BMP_zavarka = 18           ' "zavarka.bmp"
+Public Const BMP_prileganie = 19        ' "prileganie.bmp"
+Public Const BMP_tehokno = 20           ' "tehokno.bmp"
+Public Const BMP_gofra = 21             ' "gofra.bmp"
+Public Const BMP_izostyk = 22           ' "izostyk.bmp"
+Public Const BMP_flange = 23            ' "flange.bmp"
+Public Const BMP_runplace = 30          ' "runplace.bmp"
+Public Const BMP_getplace = 40          ' "getplace.bmp"
+Public Const BMP_kran = 70              ' "kran.bmp"
+Public Const BMP_marker = 80            ' "marker.bmp"
+Public Const BMP_marktime = 81          ' "marktime.bmp"
+Public Const BMP_otvod = 120            ' "otvod.bmp"
+Public Const BMP_patron_in = 130        ' "patron_in.bmp"
+Public Const BMP_patron_out = 131       ' "patron_out.bmp"
+Public Const BMP_troynik = 132          ' "troynik.bmp"
+Public Const BMP_looping_in = 133       ' "looping_in.bmp"
+Public Const BMP_looping_out = 134      ' "looping_out.bmp"
+Public Const BMP_thick = 140            ' "thick.bmp"
+Public Const BMP_category = 141         ' "category.bmp"
+Public Const BMP_startprgrz = 110       ' "startprgrz.bmp"
+Public Const BMP_endprgrz = 60          ' "endprgrz.bmp"
+Public Const BMP_prigruz = 170          ' "prigruz.bmp"
+Public Const BMP_povorot = 160          ' "povorot.bmp"
+Public Const BMP_waterIn = 161          ' "waterin.bmp"
+Public Const BMP_waterOut = 162         ' "waterout.bmp"
+Public Const BMP_defect_prokata = 163   ' "prokat.bmp"
+Public Const BMP_mufta_nach = 164       ' "mufta_in.bmp"
+Public Const BMP_mufta_kon = 165        ' "mufta_out.bmp"
+Public Const BMP_homut = 24             ' "homut.bmp"
+Public Const BMP_zaplat = 27            ' "zaplat.bmp"
+Public Const BMP_zaplat1 = 26           ' "zaplat1.bmp"
+Public Const BMP_bobysh = 28            ' "bobish.bmp"
+
+Public Const BMP_vog = 180              ' "vog.bmp"
+Public Const BMP_shov_p = 190           ' "shov_p.bmp"
+Public Const BMP_shov_s = 191           ' "shov_s.bmp"
+Public Const BMP_shov_b = 192           ' "shov_b.bmp"
+Public Const BMP_shov_n = 193           ' "shov_n.bmp"
+Public Const BMP_shov_kran = 194        ' "shov_kran.bmp"
+Public Const BMP_shov_troynik = 195     ' "shov_troynik.bmp"
+Public Const BMP_marker1 = 196          ' "marker1.bmp"
+Public Const BMP_ND_end = 197           ' "ND_end.bmp"
+Public Const BMP_ND_start = 198         ' "ND_start.bmp"
+Public Const BMP_zadvijka = 199         ' "zadvijka.bmp"
+
+Public Const BMP_fltroff = 300
+Public Const BMP_fltron = 301
+
+'obsolete from 0.7.64
+Public Const BMP_startspr_ = 100        ' "startspr.bmp"
+Public Const BMP_endsprl_ = 50          ' "endsprl.bmp"
+
+Public Const BMP_022 = 1022
+Public Const BMP_025 = 1025
+Public Const BMP_027 = 1027
+Public Const BMP_029 = 1029
+Public Const BMP_031 = 1031
+Public Const BMP_032 = 1032
+Public Const BMP_033 = 1033
+Public Const BMP_034 = 1034
+Public Const BMP_164 = 1164
+Public Const BMP_165 = 1165
+Public Const BMP_166 = 1166
+Public Const BMP_167 = 1167
+Public Const BMP_194 = 1194
+Public Const BMP_195 = 1195
+Public Const BMP_200 = 1200
+Public Const BMP_201 = 1201
+Public Const BMP_202 = 1202
+Public Const BMP_203 = 1203
+Public Const BMP_204 = 1204
+Public Const BMP_205 = 1205
+Public Const BMP_206 = 1206
+Public Const BMP_207 = 1207
+Public Const BMP_208 = 1208
+Public Const BMP_210 = 1210
+Public Const BMP_211 = 1211
+Public Const BMP_212 = 1212
+Public Const BMP_213 = 1213
+Public Const BMP_214 = 1214
+Public Const BMP_215 = 1215
+Public Const BMP_216 = 1216
+Public Const BMP_218 = 1218
+Public Const BMP_219 = 1219
+Public Const BMP_220 = 1220
+Public Const BMP_221 = 1221
+Public Const BMP_222 = 1222
+Public Const BMP_223 = 1223
+Public Const BMP_224 = 1224
+Public Const BMP_225 = 1225
+Public Const BMP_226 = 1226
+Public Const BMP_227 = 1227
+Public Const BMP_228 = 1228
+Public Const BMP_229 = 1229
+Public Const BMP_230 = 1230
+Public Const BMP_231 = 1231
+Public Const BMP_232 = 1232
+Public Const BMP_233 = 1233
+Public Const BMP_234 = 1234
+Public Const BMP_236 = 1236
+

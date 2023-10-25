@@ -1,0 +1,10 @@
+#include "company.h"
+
+STRINGTABLE DISCARDABLE
+BEGIN
+
+resCompWebTitle                 "Arkaline on Web"
+resCompWebUrl                   "http://www.arkaline.co"
+resCompPrgUse                   "Предназначена для использования в\012ARKA PETRO GAS PIPELINE Co"
+
+END

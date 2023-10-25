@@ -1,0 +1,5 @@
+LIBRARY vog
+DESCRIPTION 'Navigate data related staff (C) 2006 by Vitaly Bogomolov, Alexander Nikonov'
+EXPORTS
+vogError=_vogError@4
+krotCreateVogIndex=_krotCreateVogIndex@16

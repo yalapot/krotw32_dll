@@ -1,0 +1,10 @@
+[Palette]
+Version=1
+EntryNum=4
+[Items]
+ItemMin=0:255
+ItemMax=199:0
+Item1=30:327670
+Item2=45:4259710
+Item3=90:9850645
+Item4=110:9868950

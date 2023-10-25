@@ -1,0 +1,142 @@
+; Tables list
+; TABLE;name
+; FIELD;name;Type;Size;AllowZeroLength;DefaultValue
+; ...
+; INDEX#name#Fields#Primary#Unique#IgnoreNulls
+; ...
+; ENDTABLE
+
+; Type is:
+; 16 - Big Int
+; 9 - Binary
+; 1 - Boolean
+; 2 - Byte
+; 18 - Char
+; 5 - Currency
+; 8 - Date / Time
+; 20 - Decimal
+; 7 - Double
+; 21 - Float
+; 15 - Guid
+; 3 - Integer
+; 4 - Long
+; 11 - Long Binary (OLE Object)
+; 12 - Memo
+; 19 - Numeric
+; 6 - Single
+; 10 - Text
+; 22 - Time
+; 23 - Time Stamp
+; 17 - VarBinary
+
+TABLE;dct_feat_size
+FIELD;id;4;4;False;
+FIELD;name;10;32;False;
+FIELD;code_name;10;8;False;
+INDEX#pk_dct_feat_size#+id#True#True#False
+ENDTABLE
+
+TABLE;objtypes
+FIELD;id;3;2;False;
+FIELD;name;10;50;False;
+FIELD;tbl;10;16;True;
+FIELD;off;1;1;False;0
+INDEX#iid#+id#True#True#False
+ENDTABLE
+
+TABLE;common
+FIELD;dist;4;4;False;0
+FIELD;type;3;2;False;0
+FIELD;name;10;64;True;
+FIELD;len;4;4;False;0
+FIELD;linkedDist;4;4;True
+FIELD;userDist;4;4;False;0
+FIELD;userLen;4;4;False;0
+FIELD;isAttention;1;1;False;0
+FIELD;createBy;10;50;True
+FIELD;createDate;8;8;False
+FIELD;editBy;10;50;True
+FIELD;editDate;8;8;False
+FIELD;color;4;4;False;0
+INDEX#iid#+dist#True#True#False
+ENDTABLE
+
+TABLE;lin_obj
+FIELD;dist;4;4;False;0
+FIELD;marker;1;1;False;0
+FIELD;marker_text;10;50;True;
+FIELD;trace_dist;10;50;True;
+INDEX#iid#+dist#True#True#False
+ENDTABLE
+
+TABLE;defect
+FIELD;dist;4;4;False;0
+FIELD;width;7;8;False;0
+FIELD;orient_s;7;8;False;0
+FIELD;orient_e;7;8;False;0
+FIELD;value_min;7;8;False;0
+FIELD;value_max;7;8;False;0
+FIELD;ex1;7;8;False;0
+FIELD;ex2;7;8;False;0
+FIELD;ey1;7;8;False;0
+FIELD;ey2;7;8;False;0
+FIELD;ix1;7;8;False;0
+FIELD;ix2;7;8;False;0
+FIELD;iy1;7;8;False;0
+FIELD;iy2;7;8;False;0
+FIELD;feat_size_id;4;4;False;
+FIELD;insidetype;4;4;False;
+INDEX#fk_feat_size#+feat_size_id#False#False#False
+INDEX#iid#+dist#True#True#False
+ENDTABLE
+
+TABLE;thick
+FIELD;dist;4;4;False;0
+FIELD;thick;7;8;False;0
+FIELD;pressure;7;8;False;0
+INDEX#iid#+dist#True#True#False
+ENDTABLE
+
+TABLE;weld
+FIELD;dist;4;4;False;0
+FIELD;weld1;7;8;False;0
+FIELD;weld2;7;8;False;0
+FIELD;curve;7;8;False;0
+FIELD;angle;7;8;False;0
+FIELD;isComplexCurve;1;1;False;0
+FIELD;tube_number;10;50;True;
+INDEX#iid#+dist#True#True#False
+ENDTABLE
+
+TABLE;turn
+FIELD;dist;4;4;False;0
+FIELD;xmark;4;4;False;0
+FIELD;ymark;4;4;False;0
+FIELD;zmark;4;4;False;0
+FIELD;vert;1;1;False;0
+FIELD;horz;1;1;False;0
+FIELD;typ;3;2;False;0
+FIELD;radxy;7;8;False;0
+FIELD;anglxy;7;8;False;0
+FIELD;radz;7;8;False;0
+FIELD;anglz;7;8;False;0
+FIELD;radcom;7;8;False;0
+FIELD;anglcom;7;8;False;0
+FIELD;startTune;1;1;False;0
+FIELD;endTune;1;1;False;0
+FIELD;calctyp;3;2;False;0
+INDEX#iid#+dist#True#True#False
+ENDTABLE
+
+TABLE;distnode
+FIELD;odo;4;4;False;0
+FIELD;rpt;4;4;False;0
+INDEX#iodo#+odo#False#True#False
+INDEX#irpt#+rpt#False#True#False
+ENDTABLE
+
+TABLE;trcConfig
+FIELD;distMode;4;4;False;0
+FIELD;odoKoef;7;8;False;1
+FIELD;odoStart;4;4;False;0
+ENDTABLE
