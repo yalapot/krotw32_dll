@@ -1,0 +1,43 @@
+;Каплибровка для профиля 1022 encoder 27.12.2021
+
+[Profile_calidrate]
+
+calibrate_date=27.12.2021
+
+id_device=1022
+
+profil_sens_quantity = 32
+
+Profil0  = 621
+Profil1  = 630
+Profil2  = 627
+Profil3  = 650
+Profil4  = 640
+Profil5  = 648
+Profil6  = 644
+Profil7  = 644
+Profil8  = 639
+Profil9  = 630
+Profil10 = 634
+Profil11 = 646
+Profil12 = 637
+Profil13 = 659
+Profil14 = 646
+Profil15 = 634
+Profil16 = 630
+Profil17 = 635
+Profil18 = 617
+Profil19 = 651
+Profil20 = 640
+Profil21 = 632
+Profil22 = 640
+Profil23 = 631
+Profil24 = 636
+Profil25 = 622
+Profil26 = 627
+Profil27 = 623
+Profil28 = 639
+Profil29 = 632
+Profil30 = 637
+Profil31 = 630
+
