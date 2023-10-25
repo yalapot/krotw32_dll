@@ -1,0 +1,5 @@
+LIBRARY 460_drv
+EXPORTS
+krtOpenTrace=_krtOpenTrace@16
+krtDriverInfo=_krtDriverInfo@4
+krtCloseTrace=_krtCloseTrace@4

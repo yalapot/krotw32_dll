@@ -1,0 +1,5 @@
+LIBRARY epro_drv_508
+EXPORTS
+krtOpenTrace=_krtOpenTrace@16
+krtDriverInfo=_krtDriverInfo@4
+krtCloseTrace=_krtCloseTrace@4
