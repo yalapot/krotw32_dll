@@ -1,0 +1,6 @@
+LIBRARY bb128_3d
+DESCRIPTION 'bb128_3d driver forr black box krotw32 view by Lapot (C) 2003'
+EXPORTS
+krtOpenTrace=_krtOpenTrace@16
+krtDriverInfo=_krtDriverInfo@4
+krtCloseTrace=_krtCloseTrace@4

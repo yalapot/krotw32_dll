@@ -1,0 +1,1 @@
+make -D%1  -fbort.mak
