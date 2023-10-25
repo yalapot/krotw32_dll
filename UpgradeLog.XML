@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="dll">
+</Property><Property Name="Файл решения" Value="D:\work\krot.core\dll.sln">
+</Property><Property Name="Date" Value="10 сентября 2020 г.">
+</Property><Property Name="Time" Value="16:35:14">
+</Property></Properties><Event ErrorLevel="0" Project="dll" Source="dll.vcproj" Description="Converting project file 'D:\work\krot.core\dll.vcproj'.">
+</Event><Event ErrorLevel="1" Project="dll" Source="dll.vcproj" Description="This application has been updated to include settings related to the User Account Control (UAC) feature of Windows Vista. By default, when run on Windows Vista with UAC enabled, this application is marked to run with the same privileges as the process that launched it. This marking also disables the application from running with virtualization. You can change UAC related settings from the Property Pages of the project.">
+</Event><Event ErrorLevel="1" Project="dll" Source="dll.vcproj" Description="VCWebServiceProxyGeneratorTool is no longer supported. The tool has been removed from your project settings.">
+</Event><Event ErrorLevel="0" Project="dll" Source="dll.vcproj" Description="Web deployment to the local IIS server is no longer supported. The Web Deployment build tool has been removed from your project settings.">
+</Event><Event ErrorLevel="1" Project="dll" Source="dll.vcproj" Description="MSB8012: $(TargetName) ('dll') does not match the Linker's OutputFile property value 'D:\work\sources\krot\core\krotw32.dll' ('krotw32') in project configuration 'Debug|Win32'. This may cause your project to build incorrectly. To correct this, please make sure that $(TargetName) property value matches the value specified in %(Link.OutputFile).">
+</Event><Event ErrorLevel="1" Project="dll" Source="dll.vcproj" Description="MSB8012: $(TargetPath) ('D:\work\krot.core\.\Debug\dll.dll') does not match the Linker's OutputFile property value 'D:\work\sources\krot\core\krotw32.dll' ('D:\work\sources\krot\core\krotw32.dll') in project configuration 'Debug|Win32'. This may cause your project to build incorrectly. To correct this, please make sure that $(TargetPath) property value matches the value specified in %(Link.OutputFile).">
+</Event><Event ErrorLevel="1" Project="dll" Source="dll.vcproj" Description="MSB8012: $(TargetPath) ('D:\work\krot.core\.\Release\dll.dll') does not match the Linker's OutputFile property value '.\Release/dll.dll' ('D:\work\krot.core\Release/dll.dll') in project configuration 'Release|Win32'. This may cause your project to build incorrectly. To correct this, please make sure that $(TargetPath) property value matches the value specified in %(Link.OutputFile).">
+</Event><Event ErrorLevel="0" Project="dll" Source="dll.vcproj" Description="Done converting to new project file 'D:\work\krot.core\dll.vcxproj'.">
+</Event><Event ErrorLevel="3" Project="dll" Source="dll.vcproj" Description="Converted">
+</Event></UpgradeLog>
