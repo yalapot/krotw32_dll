@@ -1,0 +1,10 @@
+*.lib
+*.exp
+*.obj
+*.tmp
+*.dll
+*.txt
+*.exe
+
+/Debug/
+/ipch/
