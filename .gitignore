@@ -5,6 +5,12 @@
 *.dll
 *.txt
 *.exe
+*.ncb
 
 /Debug/
 /ipch/
+/.vs/
+/_!_api3/
+/_UpgradeReport_Files/
+/drivers/experimental.drv/ansis_drv/Debug/
+/drivers/experimental.drv/raw_data/2021.09.02_10inch_Caliper/

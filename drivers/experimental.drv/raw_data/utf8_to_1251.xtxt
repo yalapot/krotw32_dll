@@ -1,0 +1,111 @@
+https://wiki.shelek.ru/index.php/FAQ:WinAPI_VCPP:%D0%BF%D0%B5%D1%80%D0%B5%D0%BA%D0%BE%D0%B4%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0_%D0%BC%D0%B5%D0%B6%D0%B4%D1%83_windows-1251_%D0%B8_UTF-8
+
+// описание структуры
+struct coder
+{
+	// utf8->unicode
+	static wchar_t* utf8_to_unicode__dontForgetDeleteArr(const char *utf8_string)
+	{
+		wchar_t* pRes = 0;
+		int res_len = 0;
+ 
+		// тест на возможность преобразовани€
+		res_len = MultiByteToWideChar(CP_UTF8, 0, utf8_string, -1, 0, 0);
+ 
+		if (!res_len)
+			return 0;
+ 
+		// выдел€ем пам€ть
+		pRes = new wchar_t[res_len];
+ 
+		if (!pRes)
+			return 0;
+ 
+		// преобразование
+		if (!MultiByteToWideChar(CP_UTF8, 0, utf8_string, -1, pRes, res_len))
+		{
+			delete[] pRes;
+			return 0;
+		}
+ 
+		return pRes;
+	}
+ 
+	// unicode->1251
+	static char * unicode_to_1251__dontForgetDeleteArr(const wchar_t *unicode_string)
+	{
+		char* pRes = 0;
+		int res_len = 0;
+ 
+		// тест на возможность преобразовани€
+		res_len = WideCharToMultiByte(1251, 0, unicode_string, -1, 0, 0, 0, 0);
+ 
+		if (!res_len)
+			return 0;
+ 
+		// выдел€ем пам€ть
+		pRes = new char[res_len];
+ 
+		if (!pRes)
+			return 0;
+ 
+		// преобразование
+		if (!WideCharToMultiByte(1251, 0, unicode_string, -1, pRes, res_len, 0, 0))
+		{
+			delete[] pRes;
+			return 0;
+		}
+ 
+		return pRes;
+	}
+ 
+	// процедура с примером
+	static void Example()
+	{
+		wchar_t* unicode_string = 0;
+		char* cp1251_string = 0;
+ 
+		// исходный текст
+		char utf8_string[] = "UTF-8 + русский текст";
+ 
+		for (;;)
+		{
+			unicode_string = utf8_to_unicode__dontForgetDeleteArr(utf8_string);
+ 
+			if (!unicode_string)
+			{
+				AfxMessageBox("Ќе удалось конвертировать в unicode!");
+				break;
+			}
+ 
+			cp1251_string = unicode_to_1251__dontForgetDeleteArr(unicode_string);
+ 
+			if (!cp1251_string)
+			{
+				AfxMessageBox("Ќе удалось конвертировать из unicode!");
+				break;
+			}
+ 
+			break;
+		}
+ 
+		// cp1251_string - результат
+		AfxMessageBox(cp1251_string);
+ 
+		// не забываем удалить массивы
+		if (unicode_string)
+		{
+			delete[] unicode_string;
+			unicode_string = 0;
+		}
+ 
+		if (cp1251_string)
+		{
+			delete[] cp1251_string;
+			cp1251_string = 0;
+		}
+	}
+};
+ 
+// вызов примера
+coder::Example();

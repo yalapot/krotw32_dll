@@ -1,0 +1,17 @@
+[Palette]         
+Version=1         
+EntryNum=13        
+BorderMin=0      
+BorderMax=199     
+[Items]           
+ItemMin=0:0
+ItemMax=199:65535
+Item1=93:16777215
+Item2=109:16777215
+Item3=140:16711680
+Item4=171:255
+Item5=140:65384
+Item6=156:65535
+Item7=171:33023
+Item8=199:13823
+Item0=0:0

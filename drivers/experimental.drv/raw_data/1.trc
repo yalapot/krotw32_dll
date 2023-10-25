@@ -1,0 +1,77 @@
+[Files]
+Database=raw_data.mdb
+WordReport=C:\Program Files (x86)\Krot for Win32\rus.dot
+[Trace]
+Name=КС КУДИНОВСКАЯ - Т.ВР. В МГ КОРОБКИ-ЛОГ, 236м+ПК0 - ПК222+51,60м
+Driver=raw_data
+Diametr=273
+DisableMdbEdit=0
+OdoDiametr=10186
+OdoDiametr1=10186
+OdoDiametr2=10186
+PigL0=0
+PigL1=0
+PigL3=0
+ExpGraphColor=255
+newObjEdit=0
+CurveLength=100
+[Driver]
+Description=просмотр RawData
+Path=raw_data_drv.dll
+diamDflt=273
+primeExt=xml
+Pallete=C:\Program Files (x86)\Krot for Win32\pallete\std03.kpl
+dfltScaleX=0
+dfltScaleY=1
+ScaleX=-16;-8;-4;-2;0;2;4;8;16
+ScaleY=-4;-2;0;2;4
+WallThick=10
+SpeedVector=200
+OdoKoefDflt=1
+ProfilZero=65
+ProfilPigLength=925
+IsProfil=0
+OdoAngle=0
+MagnetID=
+[MagnetSystem]
+MagnDesc=Магнитная система по умолчанию (волшебные прямые)
+Tesla1=1
+Tesla2=0
+DefektWidthACP=0
+DefektWidthMode=0
+DfktLowPrcnt=10
+CurveNum=2
+DiamNum=0
+SlitNum=2
+[UserSettings]
+ctlCoroz0PalPalFile=\\NTS\ag_programs\Krot32\pallete\std03.kpl
+ctlCoroz0PalPalMin=84
+ctlCoroz0PalPalMax=137
+
+ctlCoroz1PalPalFile=\\NTS\ag_programs\Krot32\pallete\std03.kpl
+ctlCoroz1PalPalMin=84
+ctlCoroz1PalPalMax=137
+
+[DriverData]
+PATH_DATA=
+PIPE_DIAMETER=273
+ODOMETER_NAME=Основной одометр
+ODOMETER_TITLE=Расстояние по одометру в мм
+ODOMETER_SIZE=4
+ODOMETER_INT_TYPE=1
+TIMER_NAME=Основной таймер
+TIMER_TITLE=Время в миллисекундах
+TIMER_SIZE=4
+TIMER_INT_TYPE=2
+NUM_ADD_SENSORS=0
+NUM_LINES_SENSORS=1
+LINES_SENSORS_NUM_SENS0=256
+LINES_SENSORS_NAME0=MFL
+LINES_SENSORS_TITLE0=Датчики дефектоскопа
+LINES_SENSORS_SIZE0=1
+LINES_SENSORS_INT_TYPE0=1
+FULL_RECORD_SIZE=264
+first_file_index=0
+trace_step=5
+TRACE_LEN=4454910
+
