@@ -8,6 +8,8 @@
 *.ncb
 *.ocx
 *.oca
+*.sdf
+*.suo
 
 *.cbak
 *.hbak
