@@ -2896,7 +2896,7 @@ long AwerageLength     // параметр kolichestvo izmereniy dlya rascheta srednego 
                 // вычтем посто€нную составл€ющюю
                 result = long_bufer[length * sens_counter + length_counter] - local_average;
 
-                result *= Amlification;
+                result *= Amlification / 5;
 
                 result = KRT_PALLETE_SIZE/2 + (result * KRT_PALLETE_SIZE) / 4096;
 
@@ -3279,7 +3279,7 @@ long Amlification      // параметр усиление 0-64
                 // вычтем посто€нную составл€ющюю
                 result = long_bufer[length * sens_counter + length_counter] - local_average;
 
-                result *= Amlification;
+                result *= Amlification / 5;
 
                 result = KRT_PALLETE_SIZE/2 + (result * KRT_PALLETE_SIZE) / 4096;
 
