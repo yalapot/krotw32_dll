@@ -6,7 +6,6 @@ char drvError[1024];
 T_TRACE_LIST trace_list[MAX_TRACE];
 long open_trace_counter;
 
-
 /* Функция инициализации сегмента данных драйвера */
 void WINAPI initTraces(void) {
   open_trace_counter=0;
