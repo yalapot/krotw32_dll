@@ -10,11 +10,16 @@
 *.oca
 *.sdf
 *.suo
+*.idx
+*.dat
+*.mdb
+*.trc
+*.kpl
+scan.log
+desktop.ini
 
 *.cbak
 *.hbak
-
-desktop.ini
 
 
 /Debug/
