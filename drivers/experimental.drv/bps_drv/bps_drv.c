@@ -861,7 +861,7 @@ long EXPORT KRTAPI krtOpenTrace(const char * traceFile, KRTHANDLE handle, T_TRAC
 
     inf->extSens[ext_sens_index].minValue = 0;
     inf->extSens[ext_sens_index].maxValue = 255;
-    strncpy (inf->extSens[ext_sens_index].name, "Состояние платы", EXT_SENS_NAME_LENGTH);
+    strncpy (inf->extSens[ext_sens_index].name, "Датчик положения заслонки, ед.АЦП", EXT_SENS_NAME_LENGTH);
     ext_sens_index++;
 
     inf->extSens[ext_sens_index].minValue = 0;
