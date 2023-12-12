@@ -788,7 +788,7 @@ long get_data(T_OPENED_TRACE *opened_trace, long start, long length) {
   last_file = opened_trace->idx_trc[cur_idx].file_num;
 
   load_files_data( &(opened_trace->Files_buffers), first_file, last_file,
-                   opened_trace->path_data, "%sc%05ld.dat");
+                   opened_trace->path_data, STR_FILE_MASK);
 
 
 /*

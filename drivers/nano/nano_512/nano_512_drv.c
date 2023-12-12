@@ -1308,22 +1308,6 @@ long KRTAPI krtDrvRegister (
    strcpy(file_name, &datFile[strlen(datFile)-9]);
    file_name[5]=0;
    first_file_index = idx_head.first_file_index = atoi(file_name);
-/*
-   for (search_file_counter = first_file_index; search_file_counter < 4096; search_file_counter++)
-   {
-       sprintf(file_name, "%sc%05ld.dat", data_path, search_file_counter);
-       data_file = fopen(file_name, "rb");
-       if (data_file != NULL)
-       {
-          fseek(data_file, 0, SEEK_END);
-          file_len = ftell(data_file);
-          fclose(data_file);
-          if (file_len > 0) break;
-       }
-   } // (file_counter*100)/ num_file_in_trace
-
-   first_file_index = search_file_counter;
-*/
 
    // выделим путь до файлов с данными из полного пути до первого файла
    strcpy(data_path, datFile);
@@ -1370,7 +1354,7 @@ long KRTAPI krtDrvRegister (
 
    for (search_file_counter = first_file_index; search_file_counter < 4096; search_file_counter++)
    {
-       sprintf(file_name, "%sc%05ld.dat", data_path, search_file_counter);
+       sprintf(file_name, STR_FILE_MASK, data_path, search_file_counter);
        data_file = fopen(file_name, "rb");
        if (data_file != NULL)
        {
@@ -1383,7 +1367,7 @@ long KRTAPI krtDrvRegister (
 
 
   // Выясним ID жлеза
-  sprintf(file_name, "%sc%05ld.dat", data_path, first_file_index);
+  sprintf(file_name, STR_FILE_MASK, data_path, first_file_index);
   data_file = fopen(file_name, "rb");
   if (data_file == NULL) return KRT_ERR;
 
@@ -1569,7 +1553,7 @@ long KRTAPI krtDrvRegister (
        open_for_write_file_thick_II_data(data_path);
    }
 
-  sprintf(file_name, "%sc%05ld.dat", data_path, first_file_index);
+  sprintf(file_name, STR_FILE_MASK, data_path, first_file_index);
   file_counter=first_file_index;
 
   while ( (data_file = fopen(file_name, "rb")) != NULL) {
@@ -2060,7 +2044,7 @@ long KRTAPI krtDrvRegister (
 
       file_counter++;
 
-      sprintf(file_name, "%sc%05ld.dat",  data_path, file_counter);
+      sprintf(file_name, STR_FILE_MASK,  data_path, file_counter);
 
   };//  while (data_file = fopen(file_name, "rb"))
 
@@ -2879,7 +2863,7 @@ long EXPORT KRTAPI krtOpenTrace(const char * traceFile, KRTHANDLE handle, T_TRAC
        char file_name[1024];
        Т_file_header  file_head;
 
-       sprintf(file_name, "%sc%05ld.dat", trace_list[curent_trace].trace->path_data,
+       sprintf(file_name, STR_FILE_MASK, trace_list[curent_trace].trace->path_data,
                 trace_list[curent_trace].trace->first_file_index);
        data_file = fopen(file_name, "rb");
        if (data_file == NULL) return KRT_ERR;

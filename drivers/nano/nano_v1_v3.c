@@ -430,7 +430,6 @@ long Orientation_y_smooth(long new_value)
 }; // long Orientation_smooth
 
 
-// возвращает указатель на массив сумм предыдущих ... или NULL при ошибке
 long  smooth_data ( T_OPENED_TRACE *P_trace,
                     u16 * data,
                     u16 * smooth_data,
@@ -1047,7 +1046,7 @@ long Get_data( T_OPENED_TRACE *P_trace,
                                     screen[screen_pos] = (KRTDATA)
                                         Calculate_profil_mm( uarc_data [screen_pos], prof_sens_num, P_trace);
                                } else {
-                                    screen[screen_pos] = (byte) (block_data_smooth [block_pos] * 200 / P_trace->max_data_code);
+                                    screen[screen_pos] = (KRTDATA) (block_data_smooth [block_pos] * 200 / P_trace->max_data_code);
                                }
 
                                if ((P_trace->Odometers_tools_use > 0) && (group == 0)) {

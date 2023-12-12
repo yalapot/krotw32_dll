@@ -2,10 +2,12 @@
 #ifndef _KROT_512_H_
 #define _KROT_512_H_
 
-
-
 #define RECORDS_IN_BLOCK      100
 #define LENGTH_STR_DEVICE_NAME 15
+
+
+
+#define STR_FILE_MASK "%sc%05ld.dat"
 
 
 //#define ORIENTATION_FROM_VOG
