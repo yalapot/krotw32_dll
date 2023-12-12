@@ -183,7 +183,6 @@ long WINAPI krtDrvGetFirstNode ( KRTHANDLE handle, T_NODE *node,
 
             case (1): { // дифференциальное давление
 
-               // дл€ 1406, 1405, 1411
                if ( (strncmp(trace_list[cur_trace].device_ID, "1406", 4)==0) ||
                     (strncmp(trace_list[cur_trace].device_ID, "1405", 4)==0) ||
                     (strncmp(trace_list[cur_trace].device_ID, "1410", 4)==0) ||
@@ -207,6 +206,18 @@ long WINAPI krtDrvGetFirstNode ( KRTHANDLE handle, T_NODE *node,
 
 //                  node->Val=(long) trace_list[cur_trace].bps_idx[my_start].diff_pressure;
                }
+
+               if ( (strncmp(trace_list[cur_trace].device_ID, "1213", 4)==0) ||
+                    (strncmp(trace_list[cur_trace].device_ID, "1207", 4)==0)
+                  )
+               {
+                   // dP = A*3300/(10.8*0.282*1023) кѕа    * 2,16
+                   node->Val=(long) trace_list[cur_trace].bps_idx[my_start].diff_pressure * 
+                                3300 / 1483;
+               }
+
+
+
                node->Pos = start;
                break;
             };
@@ -479,7 +490,9 @@ long KRTAPI krtDrvRegister (
 
 
        if ( (strncmp(bypas_header.id_str, "1206", 4)==0) ||
-            (strncmp(bypas_header.id_str, "1212", 4)==0)
+            (strncmp(bypas_header.id_str, "1212", 4)==0) ||
+            (strncmp(bypas_header.id_str, "1207", 4)==0) ||
+            (strncmp(bypas_header.id_str, "1213", 4)==0)
           )
        {
           odometer_step = 3;
