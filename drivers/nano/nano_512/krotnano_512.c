@@ -19,14 +19,14 @@
 #include "tracetool.c"
 
 
-// ZSTD
-//#include "ZSTD/fse.h"        
-//#include "ZSTD/fse_static.h" 
-//#include "ZSTD/zstd_static.h"
-//#include "ZSTD/fse.c"        
+long read_file_header_nano512(FILE* data_file, Т_file_header* file_head)
+{
+    long result;
 
-//#include "ZSTD/zstd.h"
-//#include "ZSTD/zstd.c"
+    result = fread( &file_head, 1, sizeof(file_head), data_file);
+    if ( result != sizeof(file_head)) return KRT_ERR;
+    return KRT_OK;
+}
 
 
 #define MAX_ORIENTATION_FILTER_LENGTH 200
@@ -44,35 +44,6 @@ long Orientation_x_smooth(long new_value)
     long Sum_value;
 
     long result;
-
-/*
-  long current_or=0;
-
-  long low_tube_cur_orient = max_sens_num/4;
-  long up_tube_cur_orient  = max_sens_num-max_sens_num/4;
-  long low_tube_src_orient = max_orient_value/4;
-  long up_tube_src_orient  = max_orient_value-max_orient_value/4;
-
-        // отработаем переход через мах значение к 0
-      if (current_or > up_tube_cur_orient && 
-          p_seam->inquiry[inquiry_counter].orient < low_tube_src_orient) 
-       {
-          current_or = (long) (mul_factor * p_seam->inquiry[inquiry_counter].orient);
-          current_or += max_sens_num;
-       } else {
-            // отработаем переход через 0 значение к max
-          if (current_or < low_tube_cur_orient && 
-              p_seam->inquiry[inquiry_counter].orient > up_tube_src_orient) 
-           {
-              current_or = (long) (mul_factor * p_seam->inquiry[inquiry_counter].orient);
-              current_or = max_sens_num - current_or;
-              current_or *= (-1);
-           } else {
-             current_or = (long) (mul_factor * p_seam->inquiry[inquiry_counter].orient);
-           };
-       };
-*/
-
 
     // добавим новое значение в буфер исходных данных
     src_data_bufer [cur_pos_src_data_buf] = new_value;

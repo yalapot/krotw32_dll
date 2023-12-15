@@ -1371,7 +1371,7 @@ long KRTAPI krtDrvRegister (
   data_file = fopen(file_name, "rb");
   if (data_file == NULL) return KRT_ERR;
 
-  fread( &file_head, 1, sizeof(file_head), data_file);
+  read_file_header_nano512(data_file, &file_head);
 
   if (check_file_ID(file_head.target_name) == KRT_ERR)
   {
@@ -1586,7 +1586,7 @@ long KRTAPI krtDrvRegister (
          return KRT_ERR;
       };
 
-      fread( &file_head, 1, sizeof(file_head), data_file);
+      read_file_header_nano512(data_file, &file_head);
 
       idx_head.num_sens = file_head.magn_sensors_num;
 
@@ -2037,7 +2037,7 @@ long KRTAPI krtDrvRegister (
            idx_head.num_idx_in_table++;
            // Записали индексы архивных блоков
 
-       }; // while (fread( &Odometr, 1, sizeof(Odometr), data_file) == sizeof(Odometr))
+      } // while (fread( &arc_block.header, 1, sizeof(arc_block.header), data_file) == sizeof(arc_block.header)) {
 
       fclose(data_file);
       data_file=NULL;
@@ -2868,7 +2868,7 @@ long EXPORT KRTAPI krtOpenTrace(const char * traceFile, KRTHANDLE handle, T_TRAC
        data_file = fopen(file_name, "rb");
        if (data_file == NULL) return KRT_ERR;
 
-       fread( &file_head, 1, sizeof(file_head), data_file);
+       read_file_header_nano512(data_file, &file_head);
 
        strcpy(trace_list[curent_trace].trace->target_name, file_head.target_name);
 
