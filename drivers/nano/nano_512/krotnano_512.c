@@ -23,11 +23,19 @@ long read_file_header_nano512(FILE* data_file, Ò_file_header* file_head)
 {
     long result;
 
-    result = fread( &file_head, 1, sizeof(file_head), data_file);
+    result = fread( file_head, 1, sizeof(file_head), data_file);
     if ( result != sizeof(file_head)) return KRT_ERR;
     return KRT_OK;
 }
 
+long read_block_header_nano512(FILE* data_file, Ò_compressed_block_header* block_head)
+{
+    long result;
+
+    result = fread( block_head, 1, sizeof(block_head), data_file) == sizeof(block_head);
+    if ( result != sizeof(block_head)) return KRT_ERR;
+    return KRT_OK;
+}
 
 #define MAX_ORIENTATION_FILTER_LENGTH 200
 

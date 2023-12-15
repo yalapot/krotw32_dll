@@ -1592,8 +1592,7 @@ long KRTAPI krtDrvRegister (
 
       arc_block_counter = 0;
 
-      while (fread( &arc_block.header, 1, sizeof(arc_block.header), data_file) == sizeof(arc_block.header)) {
-
+      while ( read_block_header_nano512(data_file, &arc_block.header) ) {
 
            if ( first_length == -1 ) {
                pred_time = 0;
@@ -2037,7 +2036,7 @@ long KRTAPI krtDrvRegister (
            idx_head.num_idx_in_table++;
            // Записали индексы архивных блоков
 
-      } // while (fread( &arc_block.header, 1, sizeof(arc_block.header), data_file) == sizeof(arc_block.header)) {
+      } // while (read_block_header_nano512(data_file, &arc_block.header)) {
 
       fclose(data_file);
       data_file=NULL;
