@@ -1182,8 +1182,9 @@ typedef struct
    long  shift;
 } T_length_shift;
 
-
-T_length_shift length_shift[1000000];
+#define MAX_length_shift_ARRAY 1000000
+T_length_shift length_shift[MAX_length_shift_ARRAY];
+long length_shift_ARRAY_flag = 0;
 
 /* функция регистрации записи */
 long KRTAPI krtDrvRegister (
@@ -1633,16 +1634,6 @@ long KRTAPI krtDrvRegister (
 
                continue;
            };
-/*	 ZSTD
-
-           decompressed_size=ZSTD_decompress(
-                                           (char*) unpacked_data_block.records,
-                                           sizeof(unpacked_data_block.records),
-                                           arc_block.arc_data,                    
-                                           arc_block.header.compressed_block_size
-                                          );
-
-*/
 
            delta_decode( (char*) unpacked_data_block.records, sizeof(unpacked_data_block.records) );
            data_block = malloc(sizeof(data_block[0]) * RECORDS_IN_BLOCK);
@@ -1687,45 +1678,46 @@ long KRTAPI krtDrvRegister (
                if ((skip_tests <= 0) /* || (skip_tests >= 1000)*/ )
                {
                    skip_tests = 0;
-                   if (test_counter == 0)
-                   {
+                   if (test_counter == 0) {
                        reset_flag = 1;
-                   };
+                   }
                }
 
                if ( (data_block[test_counter].service_bits & 1) != pred_prioritet_od)
                {
                    pred_prioritet_od = data_block[test_counter].service_bits & 1;
                    idx_rec.property = (byte) pred_prioritet_od;
-                   skip_tests += ADD_THEN_CAHANGE_ODOM;
 
-                   length_shift[cur_pos].trace = (idx_head.trace_len + data_block_skip_counter - cur_shift) * 5;
-                   cur_shift += ADD_THEN_CAHANGE_ODOM;
-                   length_shift[cur_pos].shift = cur_shift * 5;
-                   cur_pos++;
+                               #pragma warning(disable : 4127)  // давим варнинг про константу в условии
+                    if ((ADD_THEN_CAHANGE_ODOM) && (length_shift_ARRAY_flag == 0)){
+                               #pragma warning(default:4127)
+                        skip_tests += ADD_THEN_CAHANGE_ODOM;
+
+                        length_shift[cur_pos].trace = (idx_head.trace_len - cur_shift) * ODOMETER_STEP;
+                        cur_shift += ADD_THEN_CAHANGE_ODOM;
+                        length_shift[cur_pos].shift = cur_shift * ODOMETER_STEP;
+
+                        if (cur_pos < MAX_length_shift_ARRAY) cur_pos++;
+                        else length_shift_ARRAY_flag = 1;
+                   }
                }
 
-               while (skip_tests > 0)
-               {
-                    memcpy( &data_block_skip[data_block_skip_counter],
-                            &data_block[test_counter],
-                            sizeof(data_block[test_counter])
-                          );
+               while (skip_tests > 0) {
+                    memcpy( &data_block_skip[data_block_skip_counter], &data_block[test_counter], sizeof(data_block[test_counter]) );
 
                     data_block_skip_counter++;
 
-                    if (data_block_skip_counter >= size_data_block_skip)
-                    {
+                    if (data_block_skip_counter >= size_data_block_skip) {
                        data_block_skip_counter = size_data_block_skip - 1;
                        break;
                     }
 
                     skip_tests--;
-               }; // while (skip_tests > 0)
+               } // while (skip_tests > 0)
 
                idx_rec.pred_odom_result_counter = data_block[test_counter].odom_result_counter;
 
-           }; // for (test_counter = 0; test_counter < arc_block.header.real_dim; test_counter++)
+           } // for (test_counter = 0; test_counter < arc_block.header.real_dim; test_counter++)
 
            idx_rec_for_write.real_len = data_block_skip_counter;
            idx_head.trace_len += idx_rec_for_write.real_len;
@@ -2109,26 +2101,30 @@ long KRTAPI krtDrvRegister (
   sprintf(key_value, "%ld", idx_head.trace_len);
   WritePrivateProfileString(DRIVER_DATA, key_name, key_value,trcFile);
 
-  if (reset_flag == 1)
-  {
+  if (reset_flag == 1) {
       MessageBox(NULL,
      "При записи данных возможно происходили перезапуски!\n Могут быть проблеммы с таймерными маркерами!\n Проверьте этот факт перезапусков в сканлоге!",
      "Предупреждение", MB_OK | MB_ICONWARNING | MB_SYSTEMMODAL);
-  };
+  }
 
-  if (accel_0_flag == 1)
-  {
+  if (accel_0_flag == 1) {
       MessageBox(NULL,
      "Возможно не работает акселерометр 1 ориентации!\n",
      "Предупреждение", MB_OK | MB_ICONWARNING | MB_SYSTEMMODAL);
-  };
+  }
 
-  if (accel_1_flag == 1)
-  {
+  if (accel_1_flag == 1) {
       MessageBox(NULL,
      "Возможно не работает акселерометр 2 ориентации!\n",
      "Предупреждение", MB_OK | MB_ICONWARNING | MB_SYSTEMMODAL);
-  };
+  }
+
+  if (length_shift_ARRAY_flag == 1) {
+      MessageBox(NULL,
+     "Переполнилась таблица компенсации пути при переключении одометров!\n",
+     "Предупреждение", MB_OK | MB_ICONWARNING | MB_SYSTEMMODAL);
+  }
+
 
 
   if ( (strncmp(file_head.target_name, "12060101", 8)==0) || // кор 1200 байпас
@@ -2141,11 +2137,11 @@ long KRTAPI krtDrvRegister (
           MessageBox(NULL,
          "В процессе работы возможно произошло превышение давления внутри гермоконтейнера!\n",
          "Предупреждение", MB_OK | MB_ICONWARNING | MB_SYSTEMMODAL);
-      };
-  };
+      }
+  }
 
   return KRT_OK;
-}; /* krtDrvRegister */
+}  /* krtDrvRegister */
 
 //////////////////////////////////////////////////////////////////////////
 // закончились Callback - Функции

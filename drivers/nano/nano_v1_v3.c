@@ -2069,7 +2069,9 @@ typedef struct
    long  shift;
 } T_length_shift;
 
-T_length_shift length_shift[1000000];
+#define MAX_length_shift_ARRAY 1000000
+T_length_shift length_shift[MAX_length_shift_ARRAY];
+long length_shift_ARRAY_flag = 0;
 
 /* функция регистрации записи */
 long KRTAPI krtDrvRegister (
@@ -2512,14 +2514,22 @@ long KRTAPI krtDrvRegister (
 #endif
            if ( drive_wheel_value != pred_prioritet_od)  
            {
-               pred_prioritet_od = drive_wheel_value;
-               idx_rec.property = (u8) pred_prioritet_od;
-               d_trace += ADD_THEN_CAHANGE_ODOM;
+                pred_prioritet_od = drive_wheel_value;
+                idx_rec.property = (u8) pred_prioritet_od;
 
-               length_shift[cur_pos].trace = (idx_head.trace_len - cur_shift) * _TRACE_STEP_;
-               cur_shift += ADD_THEN_CAHANGE_ODOM;
-               length_shift[cur_pos].shift = cur_shift * _TRACE_STEP_;
-               cur_pos++;
+
+                           #pragma warning(disable : 4127)  // давим варнинг про константу в условии
+                if ((ADD_THEN_CAHANGE_ODOM) && (length_shift_ARRAY_flag == 0)){
+                           #pragma warning(default:4127)
+                    d_trace += ADD_THEN_CAHANGE_ODOM;
+
+                    length_shift[cur_pos].trace = (idx_head.trace_len - cur_shift) * _TRACE_STEP_;
+                    cur_shift += ADD_THEN_CAHANGE_ODOM;
+                    length_shift[cur_pos].shift = cur_shift * _TRACE_STEP_;
+
+                    if (cur_pos < MAX_length_shift_ARRAY) cur_pos++;
+                    else length_shift_ARRAY_flag = 1;
+               }
            }
 
            pred_prioritet_od = block_head.status & 0x1;
@@ -2574,18 +2584,17 @@ long KRTAPI krtDrvRegister (
 
                    return KRT_ERR;
                };
-
                idx_head.num_idx_in_table++;
            }; // if (d_trace != 0)
 
 #ifdef NOT_USE_ARC_SIZE
            Gary_uarc( data_file, block_data, 0,
-                      idx_head.num_test_in_block, idx_head.num_sens         
+                      idx_head.num_test_in_block, idx_head.num_sens
                     );
 
-#else				   
+#else
            Gary_uarc( data_file, block_data, block_head.arc_size,
-                      idx_head.num_test_in_block, idx_head.num_sens         
+                      idx_head.num_test_in_block, idx_head.num_sens
                     );
 #endif
 
@@ -2686,7 +2695,6 @@ long KRTAPI krtDrvRegister (
                };
            };
            // Отсортировали данные
-
 
            // Запишем индексы дополнительных датчиков
            for (local_length_count = 0; local_length_count < d_trace; local_length_count++) {
@@ -2839,6 +2847,26 @@ long KRTAPI krtDrvRegister (
                  return KRT_ERR;
               };
 
+/*
+                                   {  // ------ DEBUG ------ DEBUG ------ DEBUG ------ DEBUG ------
+                                       char tmp_info[10240];
+                                       static FILE *acselerometr1_file_data_copy = NULL;
+                                       static long block_counter_debug = 0;
+
+                                       if ( acselerometr1_file_data_copy == NULL) acselerometr1_file_data_copy = acselerometr1_file_data;
+
+                                       block_counter_debug ++;
+                                       if ( acselerometr1_file_data_copy != acselerometr1_file_data )
+                                       {
+                                           sprintf(
+                                               tmp_info, 
+                                               "pred write_file_acselerometr1_data \nfile_counter = %ld, block_counter_debug = %ld",
+                                               file_counter, block_counter_debug
+                                           );
+                                           MessageBox(NULL, (LPCSTR)tmp_info, (LPCSTR)"2222", MB_OK | MB_ICONERROR);
+                                       }
+                                   } // ------ DEBUG ------ DEBUG ------ DEBUG ------ DEBUG ------
+*/
               write_file_acselerometr1_data(block_head.accel_1);
               write_file_acselerometr2_data(block_head.accel_2);
 
@@ -2854,8 +2882,7 @@ long KRTAPI krtDrvRegister (
                                             
               write_file_direct_move_data(direct_move);
               write_file_drive_wheel_data(drive_wheel_value);
-
-           }; // for (test_counter = 0; test_counter < d_trace; test_counter++)
+           }; // for (local_length_count = 0; local_length_count < d_trace; local_length_count++) {
 
            if (d_time >= 0) idx_head.trace_time += d_time;
 
@@ -2922,27 +2949,29 @@ long KRTAPI krtDrvRegister (
   sprintf(key_value, "%ld", idx_head.trace_len);
   WritePrivateProfileString(DRIVER_DATA, key_name, key_value,trcFile);
 
-  if (reset_flag == 1)
-  {
+  if (reset_flag == 1) {
       MessageBox(NULL,
      "При записи данных возможно происходили перезапуски!\n Могут быть проблеммы с таймерными маркерами!\n Проверьте этот факт перезапусков в сканлоге!",
      "Предупреждение", MB_OK | MB_ICONWARNING | MB_SYSTEMMODAL);
   };
 
-  if (accel_0_flag == 1)
-  {
+  if (accel_0_flag == 1) {
       MessageBox(NULL,
      "Возможно не работает акселерометр 1 ориентации!\n",
      "Предупреждение", MB_OK | MB_ICONWARNING | MB_SYSTEMMODAL);
   };
 
-  if (accel_1_flag == 1)
-  {
+  if (accel_1_flag == 1) {
       MessageBox(NULL,
      "Возможно не работает акселерометр 2 ориентации!\n",
      "Предупреждение", MB_OK | MB_ICONWARNING | MB_SYSTEMMODAL);
   };
 
+  if (length_shift_ARRAY_flag == 1) {
+      MessageBox(NULL,
+     "Переполнилась таблица компенсации пути при переключении одометров!\n",
+     "Предупреждение", MB_OK | MB_ICONWARNING | MB_SYSTEMMODAL);
+  };
 
   return KRT_OK;
 }; /* krtDrvRegister */

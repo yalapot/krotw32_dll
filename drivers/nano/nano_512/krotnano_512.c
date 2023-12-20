@@ -28,7 +28,7 @@ long read_file_header_nano512(FILE* data_file, Т_file_header* file_head)
     return KRT_OK;
 }
 
-long read_block_header_nano512(FILE* data_file, Т_compressed_block_header* block_head)
+long read_block_header_nano512(FILE* data_file, _compressed_block_header* block_head)
 {
     long result;
 
@@ -508,16 +508,6 @@ void get_block_data(T_OPENED_TRACE *opened_trace, long cur_idx)
                           (char*) unpacked_data_block.records, qlz_scratch);
       if (decompressed_size == 0) return;
 
-
-/*	 ZSTD
-      decompressed_size=ZSTD_decompress(
-           (char*) unpacked_data_block.records,
-           sizeof(unpacked_data_block.records),
-           (char *) &(opened_trace->Files_buffers.file[cur_file_idx].data[file_pos]),
-           compressed_block_header.compressed_block_size
-         );
-*/
-      
       delta_decode( (char*) unpacked_data_block.records, sizeof(unpacked_data_block.records) );
       data_block = malloc(sizeof(data_block[0]) * RECORDS_IN_BLOCK);
       DeOptimize( (unsigned char*) unpacked_data_block.records,
@@ -766,6 +756,8 @@ long get_data(T_OPENED_TRACE *opened_trace, long start, long length) {
   if (last_idx < opened_trace->idx_head.num_idx_in_table-1) cur_idx++;
   last_file = opened_trace->idx_trc[cur_idx].file_num;
 
+
+  // загрузка данных во все требуемые блоки данных !!! сама вызываемая функция находится в lib\file_buffering.c
   load_files_data( &(opened_trace->Files_buffers), first_file, last_file,
                    opened_trace->path_data, STR_FILE_MASK);
 
